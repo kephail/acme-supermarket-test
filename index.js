@@ -17,5 +17,5 @@ const products = [
 products.forEach(product => {
   basket.add(product);
 });
-const price = basket.total();
-console.log(price);
+const price = basket.totalForHumans();
+console.log("£" + price);
