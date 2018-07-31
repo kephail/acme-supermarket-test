@@ -1,3 +1,5 @@
+const BasketProduct = require("./BasketProduct");
+
 class Basket {
   constructor(discountCodes) {
     this.discountCodes = discountCodes;
@@ -5,12 +7,24 @@ class Basket {
   }
 
   add(product) {
-    this.products.push(product);
+    let addedProduct = this.products.find(p => p.sku === product.sku);
+
+    if (!addedProduct) {
+      addedProduct = new BasketProduct(
+        product.sku,
+        product.name,
+        product.price
+      );
+      this.products.push(addedProduct);
+    } else {
+      addedProduct.quantity++;
+    }
   }
 
   total() {
     let total = this.products.reduce((total, product) => {
-      return (total += product.price);
+      total += product.price * product.quantity;
+      return total;
     }, 0);
     return total;
   }
