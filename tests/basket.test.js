@@ -1,11 +1,12 @@
 const Basket = require("../Basket");
+const Product = require("../Product");
 
 test("adds 2 fruit tea, 1 strawberries and 1 coffee", () => {
   const products = [
-    // Fruit Tea,
-    // Strawberries,
-    // Fruit Tea,
-    // Coffee
+    new Product("FR1", "Fruit Tea", 311),
+    new Product("SR1", "Strawberries", 500),
+    new Product("FR1", "Fruit Tea", 311),
+    new Product("CF1", "Coffee", 1123)
   ];
 
   const pricingRules = {};
@@ -21,8 +22,8 @@ test("adds 2 fruit tea, 1 strawberries and 1 coffee", () => {
 
 test("adds 2 fruit tea", () => {
   const products = [
-    // Fruit Tea,
-    // Fruit Tea
+    new Product("FR1", "Fruit Tea", 311),
+    new Product("FR1", "Fruit Tea", 311)
   ];
 
   const pricingRules = {};
@@ -38,10 +39,10 @@ test("adds 2 fruit tea", () => {
 
 test("adds 3 strawberries and 1 fruit tea", () => {
   const products = [
-    // Strawberries,
-    // Strawberries,
-    // Fruit Tea,
-    // Strawberries
+    new Product("SR1", "Strawberries", 500),
+    new Product("SR1", "Strawberries", 500),
+    new Product("FR1", "Fruit Tea", 311),
+    new Product("SR1", "Strawberries", 500)
   ];
 
   const pricingRules = {};

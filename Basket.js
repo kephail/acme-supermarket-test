@@ -1,10 +1,18 @@
 class Basket {
-  constructor(pricingRules) {}
+  constructor(discountCodes) {
+    this.discountCodes = discountCodes;
+    this.products = [];
+  }
 
-  add(product) {}
+  add(product) {
+    this.products.push(product);
+  }
 
   total() {
-    return 0;
+    let total = this.products.reduce((total, product) => {
+      return (total += product.price);
+    }, 0);
+    return total;
   }
 }
 
