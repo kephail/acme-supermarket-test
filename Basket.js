@@ -39,6 +39,11 @@ class Basket {
     }, 0);
     return total;
   }
+
+  totalForHumans() {
+    let total = this.total();
+    return total / 100;
+  }
 }
 
 module.exports = Basket;
