@@ -4,6 +4,7 @@
   "description": "ACME JavaScript Test",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "jest || true"
   },
   "jest": {
