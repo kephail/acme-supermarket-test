@@ -34,7 +34,7 @@ class Basket {
 
   total() {
     let total = this.products.reduce((total, product) => {
-      total += product.price * product.quantity;
+      total += product.price * product.quantity - product.discount;
       return total;
     }, 0);
     return total;

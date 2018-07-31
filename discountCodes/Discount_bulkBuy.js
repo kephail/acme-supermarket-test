@@ -8,8 +8,10 @@ class Discount_bulkBuy extends Discount {
   }
 
   apply(product) {
-    // TODO: apply 'bulk buy' logic in here
-    console.log(`applying ${this.code} to ${product.name}`);
+    if (product.quantity >= this.buy) {
+      console.log(`Applying ${this.code} to ${product.name}`);
+      product.discount = product.quantity * this.discount;
+    }
   }
 }
 

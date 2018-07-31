@@ -8,8 +8,10 @@ class Discount_bxgx extends Discount {
   }
 
   apply(product) {
-    // TODO: apply 'buy x get x' logic in here
-    console.log(`applying ${this.code} to ${product.name}`);
+    if (product.quantity % (this.buy + this.get) === 0) {
+      console.log(`Applying ${this.code} to ${product.name}`);
+      product.discount += this.get * product.price;
+    }
   }
 }
 
