@@ -36,3 +36,11 @@ Test Data:
 
     Basket: SR1, SR1, FR1, SR1
     Total price expected: £16.61
+
+## Run
+
+Install modules: `npm install`
+
+To run the application: `npm start`
+
+To run the tests `npm test`
