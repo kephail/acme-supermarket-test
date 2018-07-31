@@ -1,5 +1,31 @@
 const Basket = require("../Basket");
 const Product = require("../Product");
+const Discount = require("../discountCodes");
+
+// Fake API data
+const { getDiscountCodes } = require("../api");
+
+let discountCodes = getDiscountCodes();
+
+discountCodes = discountCodes.map(discountCode => {
+  switch (discountCode.type) {
+    case "bxgx":
+      return new Discount.Bxgx(
+        discountCode.code,
+        discountCode.productCode,
+        discountCode.options
+      );
+    case "bulkBuy":
+      return new Discount.BulkBuy(
+        discountCode.code,
+        discountCode.productCode,
+        discountCode.options
+      );
+    default:
+      console.log(new Error("An unknown discount type was found"));
+      return;
+  }
+});
 
 test("adds 2 fruit tea, 1 strawberries and 1 coffee", () => {
   const products = [
@@ -9,9 +35,7 @@ test("adds 2 fruit tea, 1 strawberries and 1 coffee", () => {
     new Product("CF1", "Coffee", 1123)
   ];
 
-  const pricingRules = {};
-
-  const basket = new Basket(pricingRules);
+  const basket = new Basket(discountCodes);
 
   products.forEach(product => {
     basket.add(product);
@@ -26,9 +50,7 @@ test("adds 2 fruit tea", () => {
     new Product("FR1", "Fruit Tea", 311)
   ];
 
-  const pricingRules = {};
-
-  const basket = new Basket(pricingRules);
+  const basket = new Basket(discountCodes);
 
   products.forEach(product => {
     basket.add(product);
@@ -45,9 +67,7 @@ test("adds 3 strawberries and 1 fruit tea", () => {
     new Product("SR1", "Strawberries", 500)
   ];
 
-  const pricingRules = {};
-
-  const basket = new Basket(pricingRules);
+  const basket = new Basket(discountCodes);
 
   products.forEach(product => {
     basket.add(product);

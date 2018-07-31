@@ -2,7 +2,7 @@ const BasketProduct = require("./BasketProduct");
 
 class Basket {
   constructor(discountCodes) {
-    this.discountCodes = discountCodes;
+    this.discountCodes = discountCodes || [];
     this.products = [];
   }
 
@@ -18,6 +18,17 @@ class Basket {
       this.products.push(addedProduct);
     } else {
       addedProduct.quantity++;
+    }
+
+    this.checkDiscounts(addedProduct);
+  }
+
+  checkDiscounts(product) {
+    const discount = this.discountCodes.find(
+      d => d.productCode === product.sku
+    );
+    if (discount) {
+      discount.apply(product);
     }
   }
 
